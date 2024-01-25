@@ -9,13 +9,22 @@ import { ApiHandlerService } from '../../service/api-handler.service';
   styleUrl: './post.component.scss',
 })
 export class PostComponent {
-  public apiData :any
+ 
+  public apiData :any=[]
   constructor(private ApiService:ApiHandlerService){
 
   }
   ngOnInit(): void {
-   this.ApiService.getPost().subscribe((data:any)=>{
-    this.apiData=data
-   })
+    Array.from({length:10000}, (y,index) => {
+      const data={
+        id:index + 1,
+        title:`hello ${index +1}`,
+        body:`I am ${index + 1}`
+      }
+      this.apiData.push(data)
+    })
+  //  this.ApiService.getPost().subscribe((data:any)=>{
+  //   this.apiData=data
+  //  })
   }
 }
